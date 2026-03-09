@@ -1,9 +1,20 @@
-(https://github.com/tbias-prog/modern-editorial-blog-20260309T063116Z-1-001.git)
-<img width="1366" height="720" alt="image" src="https://github.com/user-attachments/assets/dd966805-9a2f-42f7-b19a-d27843bf6d99" />
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-# Blog-Website
-# Blog-Website
-# Blog-Website
-# Blog-Website
-# Blog-Website
+# Run and deploy your AI Studio app
 
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/19026d4b-151e-4fe8-8793-67a088d1ee30
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
