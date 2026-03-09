@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Post": {
+      "title": "Post",
+      "description": "A blog post article.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Title of the post" },
+        "slug": { "type": "string", "description": "URL-friendly slug" },
+        "content": { "type": "string", "description": "Markdown content of the post" },
+        "excerpt": { "type": "string", "description": "Short summary of the post" },
+        "category": { "type": "string", "description": "Category of the post" },
+        "thumbnailUrl": { "type": "string", "description": "URL of the post thumbnail" },
+        "authorId": { "type": "string", "description": "UID of the author" },
+        "authorName": { "type": "string", "description": "Display name of the author" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" },
+        "status": { "type": "string", "enum": ["draft", "published"], "description": "Publication status" },
+        "viewCount": { "type": "integer", "description": "Number of views" }
+      },
+      "required": ["title", "slug", "content", "authorId", "status"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A reader's comment on a post.",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "description": "ID of the post" },
+        "authorId": { "type": "string", "description": "UID of the commenter" },
+        "authorName": { "type": "string", "description": "Display name of the commenter" },
+        "content": { "type": "string", "description": "Comment text" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["postId", "authorId", "content"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile and roles.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email", "description": "User email" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "photoURL": { "type": "string", "description": "User photo URL" },
+        "role": { "type": "string", "enum": ["admin", "reader"], "description": "User role" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Account creation timestamp" }
+      },
+      "required": ["email", "role"]
+    },
+    "NewsletterSubscriber": {
+      "title": "NewsletterSubscriber",
+      "description": "Email subscriber for newsletter.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email", "description": "Subscriber email" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Subscription timestamp" }
+      },
+      "required": ["email"]
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": { "schema": "Post", "description": "Collection of blog posts" },
+    "/posts/{postId}/comments/{commentId}": { "schema": "Comment", "description": "Comments on a post" },
+    "/users/{userId}": { "schema": "User", "description": "User profiles" },
+    "/newsletter_subscribers/{subscriberId}": { "schema": "NewsletterSubscriber", "description": "Newsletter subscribers" }
+  }
+}

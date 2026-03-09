@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "posts": {
+      ".read": "true",
+      "$postId": {
+        ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin'",
+        "comments": {
+          ".read": "true",
+          "$commentId": {
+            ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.uid)"
+          }
+        }
+      }
+    },
+    "newsletter_subscribers": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('role').val() == 'admin'",
+      "$subscriberId": {
+        ".write": "!data.exists()"
+      }
+    }
+  }
+}
